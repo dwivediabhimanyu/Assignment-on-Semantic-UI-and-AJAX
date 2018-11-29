@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Assignment</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Arimo:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+	<link href="http://ercess.com/live/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="http://ercess.com/live/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="http://ercess.com/live/css/style.css" type="text/css" />
+	<link href="http://ercess.com/live/css/responsive.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="http://ercess.com/live/css/color/color.css" title="color" />
+	<link rel="stylesheet" href="http://ercess.com/live/semantic/dist/semantic.min.css">
+</head>
+<body>
+<div class="six wide field">
+<form class="ui form" id="form1" action="" method="post">
+  <div class="field">
+    <label>Email</label>
+    <input type="text" id="email" name="email" placeholder="abc@xyz.com">
+  </div>
+  <div class="ui error message"></div>
+  <button class="ui button" type="submit">Submit</button>
+</form> </div>
+<div class="ui modal">
+  <div class="header">E-mail id is stored in our database.</div>
+</div>
+    
+	<script type="text/javascript" src="http://ercess.com/live/js/jquery2.1.1.js"></script>
+	<script type="text/javascript" src="http://ercess.com/live/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://ercess.com/live/js/modernizr.custom.97074.js"></script>
+	<script type="text/javascript" src="http://ercess.com/live/js/owl.carousel.min.js"></script>
+	<script type="text/javascript" src="http://ercess.com/live/js/script.js"></script>
+	<script type="text/javascript" src="http://ercess.com/live/js/typeahead.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+	<script >
+		$('#form1').form({
+      email: {
+        identifier  : 'email',
+        rules: [
+          {
+            type   : 'email',
+            prompt : 'Please enter a valid e-mail'
+          }
+        ]
+      },
+  });
+            $(document).ready(function() {
+              if( $('#form1').form('is valid', 'email')) {
+                $("#form1").submit(function(e) {
+                   // e.preventDefault();
+                    $.ajax( {
+                        <!--insert.php calls the PHP file-->
+                        url: "data-insert.php",
+                        method: "post",
+                        data: $("form").serialize(),
+                        dataType: "text",
+                        success: function() {
+                            $('.ui.modal').modal('show');
+                        }
+                    });
+                });
+              }
+            });
+        </script>
+</body>
