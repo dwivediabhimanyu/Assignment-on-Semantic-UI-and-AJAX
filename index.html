@@ -15,7 +15,8 @@
 	<link rel="stylesheet" href="http://ercess.com/live/semantic/dist/semantic.min.css">
 </head>
 <body>
-<div class="six wide field">
+<!--Setup Form: Email feild and Submit button-->
+<div>
 <form class="ui form" id="form1" action="" method="post">
   <div class="field">
     <label>Email</label>
@@ -23,7 +24,8 @@
   </div>
   <div class="ui error message"></div>
   <button class="ui button" type="submit">Submit</button>
-</form> </div>
+</form> 
+</div>
 <div class="ui modal">
   <div class="header">E-mail id is stored in our database.</div>
 </div>
@@ -34,8 +36,10 @@
 	<script type="text/javascript" src="http://ercess.com/live/js/owl.carousel.min.js"></script>
 	<script type="text/javascript" src="http://ercess.com/live/js/script.js"></script>
 	<script type="text/javascript" src="http://ercess.com/live/js/typeahead.bundle.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-	<script >
+<!--Added Semantic JS file-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>	
+<!--Set validation rules for feild Email and check function that return true if form is valid-->
+<script>
 		$('#form1').form({
       email: {
         identifier  : 'email',
@@ -47,12 +51,19 @@
         ]
       },
   });
+function check() {
+if( $('#form1').form('is valid', 'email')) {
+return true;
+}
+}
+</script>
+<!-- AJAX Request-->
+<script>
             $(document).ready(function() {
-              if( $('#form1').form('is valid', 'email')) {
                 $("#form1").submit(function(e) {
-                   // e.preventDefault();
-                    $.ajax( {
-                        <!--insert.php calls the PHP file-->
+                    if( check()) {
+                      e.preventDefault();
+                      $.ajax( {
                         url: "data-insert.php",
                         method: "post",
                         data: $("form").serialize(),
@@ -60,9 +71,10 @@
                         success: function() {
                             $('.ui.modal').modal('show');
                         }
-                    });
-                });
-              }
+
+                      });
+                  }
+              });
             });
-        </script>
+</script>
 </body>
