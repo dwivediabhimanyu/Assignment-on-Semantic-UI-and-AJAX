@@ -1,4 +1,4 @@
-Problem statement
+#Problem statement
 
 1.	Create a small form in given html file consisting two fields:
 a.	An input box for email
@@ -10,12 +10,12 @@ b.	A submit button
 6.	In PHP page, receive the user input and store in MySQL database.
 7.	Once the email id is stored, open a popup in page flashing a message that the email id is stored in our database.
 
-NOTE:
+##NOTE:
 1.	Form element must be created through Semantic UI only.
 2.	Popup can be created using Semantic UI.
 3.	Use our given html page strictly.
 
-Documentation:
+##Documentation:
 To create a form using Semantic UI:
 https://semantic-ui.com/collections/form.html
 
