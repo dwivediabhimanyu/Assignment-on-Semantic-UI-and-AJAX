@@ -1,5 +1,7 @@
 <?php
-    $con = mysqli_connect('localhost', 'akash', 'akash');
+    $db_username ='akash';
+    $db_password ='akash';
+    $con = mysqli_connect('localhost', $db_username, $db_password);
     if(!$con) {
         die('Not Connected To Server');
     }
